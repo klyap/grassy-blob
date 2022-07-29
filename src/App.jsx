@@ -5,21 +5,26 @@ import { Environment, OrbitControls, Sky, Cloud, CameraShake } from '@react-thre
 import { Grass } from './Grass'
 import { BlobGeometry } from './BlobGeometry'
 import { Butterfly } from './Butterfly'
+import {Model} from './Froggy';
 
 const rand = Array.from({ length: 15 }, () => ({
   position: [THREE.MathUtils.randFloat(0.5, 0.7), THREE.MathUtils.randFloat(0.5, 0.7), THREE.MathUtils.randFloat(0.5, 0.7)],
   scale: THREE.MathUtils.randFloat(0.5, 1)
 }))
 
+
 export const App = () => (
   <Canvas dpr={1.5} camera={{ position: [1, -1.25, 1] }}>
     <Suspense fallback={null}>
+      <Model scale={0.1} position={new THREE.Vector3(0, 0.6, 0)}/>
+
       <Grass>
-        <BlobGeometry position={new THREE.Vector3(1, 1, 0)} />
+        <BlobGeometry scale={1} position={new THREE.Vector3(1, 1, 0)} />
         {/* <mesh>
           <sphereGeometry args={[0.5, 32, 32]} position={[1, 0.5, 1]} />
           <meshBasicMaterial color="#221600" />
         </mesh> */}
+        {/* <Butterfly /> */}
       </Grass>
       {rand.map((e, i) => (
         <Butterfly key={i} {...e} />
